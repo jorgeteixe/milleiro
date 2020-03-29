@@ -1,3 +1,4 @@
+USE milleiro;
 INSERT INTO `produto` (`ID`, `NOME`, `DESCRICION`) VALUES
 (1, 'Pan millo', 'Lorem ipsum dolor sit amet.'),
 (2, 'Pan centeo', 'Laoreet odio vestibulum.'),

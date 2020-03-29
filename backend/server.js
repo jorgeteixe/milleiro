@@ -2,12 +2,18 @@
 require('dotenv').config();
 
 const express = require('express')
+const pool = require('./connect')
 
 const app = express()
 const port = process.env.PORT
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.send('backend is up and running!'))
 
-app.all('/ping', (req, res) => res.send(new Date()))
+app.get('/produtos', (req, res) => {
+    pool.query('SELECT ID, NOME FROM PRODUTO', (error, result) => {
+        if (error) throw error;
+        res.send(result);
+    })
+})
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`backend listening on port ${port}!`))

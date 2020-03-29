@@ -1,3 +1,3 @@
-exports.REFLIST_QUERY = 'SELECT REFERENCIA as ref, COUNT(*) AS trazado, (SELECT COUNT(*) FROM forma_traza WHERE PRODUTO_ID = ?) AS total_trazas, MAX(FECHA) AS ultima_act FROM traza WHERE REFERENCIA IN (SELECT REFERENCIA FROM produto_ref WHERE PRODUTO_ID = ?) GROUP BY REFERENCIA';
+exports.REFLIST_QUERY = 'SELECT REFERENCIA as ref, COUNT(*) AS trazado, (SELECT COUNT(*) FROM forma_traza WHERE PRODUTO_ID = ?) AS total_trazas, MAX(DATA) AS ultima_act FROM traza WHERE REFERENCIA IN (SELECT REFERENCIA FROM produto_ref WHERE PRODUTO_ID = ?) GROUP BY REFERENCIA';
 exports.PRODUCT_LIST_SIMPLE = 'SELECT id, nome FROM produto';
-exports.REF_TRAZAS = 'SELECT f.NUMERO as num_traza, f.NOME as nome_traza, t.FECHA as data, t.LOCALIZACION as localizacion, t.LATITUD as latitud, t.LONGITUD as longitud FROM traza t JOIN forma_traza f on t.TRAZA_ID = f.ID WHERE REFERENCIA = ?';
+exports.REF_TRAZAS = 'SELECT f.NUMERO as num_traza, f.NOME as nome_traza, t.DATA as data, t.LOCALIZACION as localizacion, t.LATITUD as latitud, t.LONGITUD as longitud FROM traza t JOIN forma_traza f on t.TRAZA_ID = f.ID WHERE REFERENCIA = ?';

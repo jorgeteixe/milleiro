@@ -1,0 +1,13 @@
+<div class="container-fluid" style="height: 100vh">
+  <div class="row h-100">
+    <div class="col-2 border border-dark h-100">
+      <app-sidebar (selectProduto)="selectProduto($event)"></app-sidebar>
+    </div>
+    <div class="col-5 border border-dark h-100">
+      <app-refs [produto]="produto" (selectRef)="selectRef($event)"></app-refs>
+    </div>
+    <div class="col-5 border border-dark h-100">
+      <app-traza [ref]="ref"></app-traza>
+    </div>
+  </div>
+</div>

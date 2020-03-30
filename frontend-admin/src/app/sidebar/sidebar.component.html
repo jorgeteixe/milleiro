@@ -1,0 +1,9 @@
+<div class="logo text-center">
+  <img src="../assets/img/logo.png" alt="Milleiro logo" height="128px"/>
+</div>
+<div class="produtos">
+  <h3 class="text-center">Produtos</h3>
+  <ul>
+    <li *ngFor="let p of products" [class.selected]="selectedProduto == p.id" (click)="clickHandle(p.id)">{{p.nome}}</li>
+  </ul>
+</div>

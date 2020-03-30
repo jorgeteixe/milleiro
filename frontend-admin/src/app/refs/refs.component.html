@@ -1,0 +1,26 @@
+<div *ngIf="produtoInfo">
+  <h1 class="titulo">{{produtoInfo.nome}}</h1>
+  <p>{{produtoInfo.descricion}}</p>
+</div>
+<table *ngIf="reflines.length != 0" class="table">
+  <thead>
+    <th scope="col">Referencia</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Última actualización</th>
+  </thead>
+  <tbody>
+  <tr (click)="handleClick(r.ref)" *ngFor="let r of reflines" class="refline" [class.selected]="selectedRef == r.ref">
+    <th scope="row">{{r.ref}}</th>
+    <td>
+        <span class="progress">
+          <span aria-valuemin="0" attr.aria-valuemax="{{r.totalTrazas}}"
+                attr.aria-valuenow="{{r.trazado}}" [className]="r.trazado == r.totalTrazas ? 'progress-bar progress-bar-striped bg-success' : 'progress-bar progress-bar-striped bg-primary'"
+                role="progressbar" style="width: {{r.trazado/r.totalTrazas | percent:'1.0-1'}}">
+            {{r.trazado}}/{{r.totalTrazas}}
+          </span>
+        </span>
+    </td>
+    <td class="pl-3">{{r.ultimaAct | date:'short':'+0100'}}</td>
+  </tr>
+  </tbody>
+</table>

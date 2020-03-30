@@ -1,0 +1,12 @@
+.reftitle > h1 {
+  display: inline-block;
+  line-height: 128px;
+}
+.reftitle > qrcode {
+  display: inline-block;
+  float: right;
+}
+
+.localizacion {
+  cursor: help;
+}

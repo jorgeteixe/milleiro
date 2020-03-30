@@ -1,0 +1,12 @@
+.refline {
+  cursor: pointer;
+}
+
+.refline:hover {
+  background: #eeeeee;
+}
+
+.selected {
+  cursor: default !important;
+  background: #eed9d1 !important;
+}

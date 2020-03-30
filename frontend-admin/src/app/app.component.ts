@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend-admin';
+  produto: number;
+  ref: string;
+
+  selectProduto(id: number) {
+    this.produto = id;
+  }
+
+  selectRef(ref: string) {
+    this.ref = ref;
+  }
 }

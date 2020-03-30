@@ -1,0 +1,20 @@
+<div *ngIf="ref" class="reftitle">
+  <h1>ref. {{ref}}</h1>
+  <qrcode [errorCorrectionLevel]="'M'" [qrdata]="ref" [width]="128"></qrcode>
+</div>
+<table class="table" *ngIf="trazas.length != 0">
+  <thead>
+    <th scope="col">Nº</th>
+    <th scope="col">Nome</th>
+    <th scope="col">Data</th>
+    <th scope="col">Localización</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let t of trazas">
+    <th scope="row">{{t.numTraza}}</th>
+    <td>{{t.nomeTraza}}</td>
+    <td>{{t.data | date: 'short':'+0100'}}</td>
+    <td class="localizacion" tooltip="{{t.latitud}}, {{t.longitud}}" placement="left" show-delay="0" hide-delay="0">{{t.localizacion}}</td>
+  </tr>
+  </tbody>
+</table>

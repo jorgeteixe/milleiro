@@ -1,0 +1,25 @@
+.logo {
+  margin: 20px;
+}
+
+.produtos > h3 {
+  font-weight: bold;
+}
+
+.produtos > ul {
+  list-style: none;
+  padding: 0;
+}
+
+.produtos > ul > li {
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.produtos > ul > li:hover {
+  text-decoration: underline;
+}
+
+.selected {
+  font-weight: bold;
+}

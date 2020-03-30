@@ -27,6 +27,22 @@ app.get('/produto/:id', (req, res) => {
     })
 })
 
+app.get('/produto/:id/preparacion', (req, res) => {
+    const id = req.params.id;
+    pool.query(queries.PREPARACION_BY_ID, id, (error, result) => {
+        if (error) throw error;
+        res.send(result);
+    })
+})
+
+app.get('/produto/:id/ingredientes', (req, res) => {
+    const id = req.params.id;
+    pool.query(queries.INGREDIENTES_BY_ID, id, (error, result) => {
+        if (error) throw error;
+        res.send(result);
+    })
+})
+
 app.get('/produto/:id/reflist', (req, res) => {
     const id = req.params.id;
     pool.query(queries.REFLIST_QUERY, [id, id], (error, result) => {

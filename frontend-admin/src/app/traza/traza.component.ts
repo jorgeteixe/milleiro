@@ -23,7 +23,4 @@ export class TrazaComponent implements OnInit, OnChanges {
       console.log(`Fetched traza for ref = ${this.ref}`);
     });
   }
-
-
-
 }

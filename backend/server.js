@@ -43,9 +43,12 @@ app.get('/ref/:ref/traza', (req, res) => {
     })
 })
 
-
-
-
-
+app.get('/ref/:ref/produto', (req, res) => {
+    const ref = req.params.ref;
+    pool.query(queries.PRODUTO_BY_REF, ref, (error, result) => {
+        if (error) throw error;
+        res.send(result);
+    })
+})
 
 app.listen(port, () => console.log(`backend listening on port ${port}!`))

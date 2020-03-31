@@ -1,3 +1,29 @@
 body {
   font-family: 'Baloo Thambi 2', sans-serif;
 }
+
+.mw-60 {
+  max-width: 50%;
+  width: 100%;
+}
+
+.neumorphism {
+  border-radius: 31px;
+  background: #ffffff;
+  box-shadow:  20px 20px 60px #d9d9d9,
+  -20px -20px 60px #ffffff;
+}
+
+.form-control:focus {
+  border-color: #920b36;
+  box-shadow: 0 0 0 0.2rem rgba(146, 11, 54, 0.25);
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

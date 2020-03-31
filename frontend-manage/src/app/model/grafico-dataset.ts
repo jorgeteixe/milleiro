@@ -6,4 +6,5 @@ export class GraficoDataset {
   minus2: number;
   minus1: number;
   minus0: number;
+  color: string;
 }

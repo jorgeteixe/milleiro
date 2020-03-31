@@ -1,8 +1,15 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Produto} from './classes/produto';
-import {GraficoDataset} from './classes/grafico-dataset';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Produto} from './model/produto';
+import {GraficoDataset} from './model/grafico-dataset';
 import {map} from 'rxjs/operators';
+import {IngredenteSenID, LiñaPreparacionSenID, ProdutoSenID} from './model/engadir';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +18,7 @@ export class ApiService {
 
   apiURL = 'http://localhost:3001';
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   public getProdutosGrafico() {
     return this.httpClient.get<Produto[]>(`${this.apiURL}/grafico/produtos`).pipe(
@@ -22,6 +28,24 @@ export class ApiService {
 
   public getDatasetById(id: number) {
     return this.httpClient.get<GraficoDataset>(`${this.apiURL}/grafico/dataset/${id}`).pipe(
+      map(response => response)
+    );
+  }
+
+  public createProduct(produto: ProdutoSenID) {
+    return this.httpClient.post(`${this.apiURL}/produto/engadir`, produto, httpOptions).pipe(
+      map(response => response)
+    );
+  }
+
+  public addIngredente(ingredente: IngredenteSenID, id: number) {
+    return this.httpClient.post(`${this.apiURL}/produto/${id}/ingredentes/engadir`, ingredente, httpOptions).pipe(
+      map(response => response)
+    );
+  }
+
+  public addLiñaPreparacion(liñaPreparacion: LiñaPreparacionSenID, id: number) {
+    return this.httpClient.post(`${this.apiURL}/produto/${id}/preparacion/engadir`, liñaPreparacion, httpOptions).pipe(
       map(response => response)
     );
   }

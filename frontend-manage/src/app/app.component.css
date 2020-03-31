@@ -54,3 +54,8 @@
   font-weight: bold;
   padding-left: 25px;
 }
+
+.mw-sidebar {
+  max-width: 200px;
+  padding-left: 10px;
+}

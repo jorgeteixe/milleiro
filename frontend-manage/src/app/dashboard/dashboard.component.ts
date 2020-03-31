@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../api.service';
-import {Produto} from '../classes/produto';
+import {Produto} from '../model/produto';
 import {Chart} from 'chart.js';
-import {GraficoDataset} from '../classes/grafico-dataset';
+import {GraficoDataset} from '../model/grafico-dataset';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,13 +33,16 @@ export class DashboardComponent implements OnInit {
         r.forEach((p) => {
           this.activos.push(true);
           this.apiService.getDatasetById(p.id).toPromise()
-            .then((r2) => this.datasets.push(r2));
+            .then((r2) => {
+              r2.color = this.colorIndice(p.id);
+              this.datasets.push(r2);
+            });
       });
     });
     setTimeout(() => {
       this.generateDatasets();
       this.generateChart();
-    }, 700);
+    }, 100);
   }
 
   colorProduto(id: number, activo: boolean) {
@@ -93,7 +96,7 @@ export class DashboardComponent implements OnInit {
       if (this.activos[i]) {
         this.activeDatasets.push({
           data: this.toNumberArray(this.datasets[i]),
-          borderColor: this.colorIndice(i),
+          borderColor: this.datasets[i].color,
           fill: false
         });
         j++;
@@ -101,9 +104,20 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  handleClick(i: number) {
-    this.activos[i] = !this.activos[i];
-    this.generateDatasets();
+  handleClick(index: number) {
+    this.activos[index] = !this.activos[index];
+    this.chart.data.datasets = [];
+    for (let i = 0; i < this.produtos.length; i++) {
+      let j = 0;
+      if (this.activos[i]) {
+        this.chart.data.datasets.push({
+          data: this.toNumberArray(this.datasets[i]),
+          borderColor: this.datasets[i].color,
+          fill: false
+        });
+        j++;
+      }
+    }
     this.chart.update();
   }
 

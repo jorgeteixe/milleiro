@@ -1,0 +1,85 @@
+.head {
+  margin: 0 30px 0 20px;
+  padding: 0 1%;
+  color: #9c9c9c;
+  font-size: 1.2em;
+}
+
+.head-part > fa-icon {
+  padding-right: 10px;
+}
+
+@media (max-width: 1160px) {
+  .head {
+    font-size: 1em;
+  }
+  .mw-60 {
+    max-width: 80%;
+  }
+}
+
+.head > .selected {
+  color: #920b36;
+}
+
+.head-part {
+  line-height: 100px;
+}
+
+.form-create {
+  padding: 50px 50px 0 50px;
+}
+
+.form-create label {
+  font-size: 2em;
+  text-indent: 10px;
+  color: #5e5e60;
+}
+
+.form-create > .desc {
+  padding-top: 20px;
+}
+
+.create {
+  min-height: 470px;
+}
+
+.buttoms {
+  margin: 50px 50px 0 50px;
+  line-height: 50px;
+  font-weight: bold;
+}
+
+.buttom {
+  height: 50px;
+  border-radius: 2em;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+.back-buttom {
+  border: 2px solid rgba(146,11,54,1);
+  color: rgba(146,11,54,1);
+}
+
+.more-buttom {
+  border: 2px solid rgb(77, 77, 77);
+  color: #626262;
+}
+
+.next-buttom {
+  color: white;
+  background: rgb(255,227,63);
+  background: linear-gradient(40deg, rgba(255,227,63,1) -50%, rgba(146,11,54,1) 80%);
+}
+
+.next-buttom > fa-icon {
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.buttom-disable {
+  color: #bbbbbb;
+  border-color: #bbbbbb;
+  cursor: default;
+}

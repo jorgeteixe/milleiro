@@ -1,0 +1,17 @@
+<div class="h-100 d-flex align-items-center">
+  <div class="h-75  w-100">
+    <div class="clearfix h-25">
+      <div class="greeting w-25 float-left">
+        <h1 class="welcome">Benvido a</h1>
+        <h1 class="title">Milleiro</h1>
+      </div>
+      <div *ngIf="produtos" class="produtos w-50 float-right">
+        <span (click)="handleClick(i)" *ngFor="let p of produtos; index as i"
+              [ngClass]="colorProduto(p.id, activos[i])" class="produto">{{p.nome}}</span>
+      </div>
+    </div>
+    <div class="grafico mx-auto">
+      <canvas id="grafico" style="position: relative; height:45vh; width:80vw;"></canvas>
+    </div>
+  </div>
+</div>

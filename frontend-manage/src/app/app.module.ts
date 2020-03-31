@@ -1,20 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-import { MainComponent } from './main/main.component';
-import { AppRoutingModule } from './app-routing/app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AppRoutingModule } from './app-routing.module';
+import { EngadirComponent } from './engadir/engadir.component';
+import { ListarComponent } from './listar/listar.component';
+import { BuscarComponent } from './buscar/buscar.component';
+import { ApiComponent } from './api/api.component';
+import { ContrasinalComponent } from './contrasinal/contrasinal.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    DashboardComponent,
+    EngadirComponent,
+    ListarComponent,
+    BuscarComponent,
+    ApiComponent,
+    ContrasinalComponent
   ],
   imports: [
     BrowserModule,
+    FontAwesomeModule,
     AppRoutingModule,
-    FontAwesomeModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

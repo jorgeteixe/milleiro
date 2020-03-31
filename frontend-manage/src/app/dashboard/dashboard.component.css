@@ -1,0 +1,72 @@
+.greeting {
+  margin-left: 40px;
+}
+
+.welcome {
+  color: #5e5e5e;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 64px;
+}
+
+.produto {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #ffe33f;
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin: 8px;
+  line-height: 20px;
+  text-indent: 0;
+}
+
+.produtos {
+  text-indent: 40px;
+}
+
+.first-color {
+  border-color: #920b36;
+}
+
+.second-color {
+  border-color: #ffe33f;
+}
+
+.third-color {
+  border-color: #3a3a3c;
+}
+
+.first-active {
+  background: #920b36;
+  color: white;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.second-active {
+  background: #ffe33f;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.third-active {
+  background: #3a3a3c;
+  color: white;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.grafico {
+  width: 90%;
+}

@@ -1,9 +1,48 @@
 <div class="container-fluid" style="height: 100vh">
   <div class="row h-100">
-    <div class="col-1 border border-dark"></div>
-    <div class="col-11">
+    <div class="col-1 sidebar">
+      <!-- SIDEBAR -->
+      <img src="../assets/img/logo-text.png" alt="Milleiro Logo" routerLink="/tableiro"/>
+      <div class="links">
+        <div class="link" routerLink="/tableiro" routerLinkActive="selected">
+          <fa-icon [icon]="faTachometerAlt"></fa-icon>
+          <span>Tableiro</span>
+        </div>
+        <div class="separator">
+          Produtos
+        </div>
+        <div class="link" routerLink="/engadir" routerLinkActive="selected">
+          <fa-icon [icon]="faPlus"></fa-icon>
+          <span>Engadir</span>
+        </div>
+        <div class="link" routerLink="/listar" routerLinkActive="selected">
+          <fa-icon [icon]="faListOl"></fa-icon>
+          <span>Listar</span>
+        </div>
+        <div class="link" routerLink="/buscar" routerLinkActive="selected">
+          <fa-icon [icon]="faSearch"></fa-icon>
+          <span>Buscar</span>
+        </div>
+        <div class="separator">
+          Configuración
+        </div>
+        <div class="link" routerLink="/api" routerLinkActive="selected">
+          <fa-icon [icon]="faProjectDiagram"></fa-icon>
+          <span>API</span>
+        </div>
+        <div class="link" routerLink="/constrasinal" routerLinkActive="selected">
+          <fa-icon [icon]="faUnlock"></fa-icon>
+          <span>Constrasinal</span>
+        </div>
+        <div class="link">
+          <fa-icon [icon]="faSignOutAlt"></fa-icon>
+          <span>Saír</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-11 h-100">
+      <!-- MAIN PAGE -->
       <router-outlet></router-outlet>
     </div>
   </div>
-
 </div>

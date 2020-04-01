@@ -33,19 +33,19 @@ export class ApiService {
   }
 
   public createProduct(produto: ProdutoSenID) {
-    return this.httpClient.post(`${this.apiURL}/produto/engadir`, produto, httpOptions).pipe(
+    return this.httpClient.post<Response>(`${this.apiURL}/produto/engadir`, produto, httpOptions).pipe(
       map(response => response)
     );
   }
 
   public addIngredente(ingredente: IngredenteSenID, id: number) {
-    return this.httpClient.post(`${this.apiURL}/produto/${id}/ingredentes/engadir`, ingredente, httpOptions).pipe(
+    return this.httpClient.post<Response>(`${this.apiURL}/produto/${id}/ingredentes/engadir`, ingredente, httpOptions).pipe(
       map(response => response)
     );
   }
 
   public addLiñaPreparacion(liñaPreparacion: LiñaPreparacionSenID, id: number) {
-    return this.httpClient.post(`${this.apiURL}/produto/${id}/preparacion/engadir`, liñaPreparacion, httpOptions).pipe(
+    return this.httpClient.post<Response>(`${this.apiURL}/produto/${id}/preparacion/engadir`, liñaPreparacion, httpOptions).pipe(
       map(response => response)
     );
   }

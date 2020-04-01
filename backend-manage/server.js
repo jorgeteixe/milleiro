@@ -33,21 +33,21 @@ app.get('/grafico/dataset/:id', (req, res) => {
 
 app.post('/produto/engadir', (req, res) => {
     console.log(req.body);      // your JSON
-    res.sendStatus(200);    // echo the result back
+    res.status(200).send('11');    // echo the result back
 });
 
 app.post('/produto/:id/ingredentes/engadir', (req, res) => {
     const id = req.params.id
     console.log(id);      // url id
     console.log(req.body);      // your JSON
-    res.sendStatus(200);    // echo the result back
+    res.send('200');    // echo the result back
 });
 
 app.post('/produto/:id/preparacion/engadir', (req, res) => {
     const id = req.params.id
     console.log(id);      // url id
     console.log(req.body);      // your JSON
-    res.sendStatus(200);    // echo the result back
+    res.send('200');    // echo the result back
 });
 
 

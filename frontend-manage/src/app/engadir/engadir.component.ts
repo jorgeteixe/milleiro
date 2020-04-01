@@ -36,7 +36,8 @@ export class EngadirComponent implements OnInit {
   preparacions: LiñaPreparacionSenID[] = [{numero: 1, texto: ''}];
   prepvacia: LiñaPreparacionSenID = {numero: this.npreparacion + 2, texto: ''};
 
-  produtoSenID: ProdutoSenID = {nome: '', descricion: ''};
+  produto: ProdutoSenID = {nome: '', descricion: ''};
+  idCreado: any;
 
   constructor(private apiService: ApiService) {
   }
@@ -92,7 +93,7 @@ export class EngadirComponent implements OnInit {
   handleSeguinte(activo: boolean) {
     if (activo) {
       if (this.step === 0) {
-        if (this.produtoSenID.nome.length !== 0 && this.produtoSenID.descricion.length !== 0) {
+        if (this.produto.nome.length !== 0 && this.produto.descricion.length !== 0) {
           this.step++;
           this.showform++;
           this.botonesActivos[0] = true;
@@ -115,7 +116,22 @@ export class EngadirComponent implements OnInit {
         if (this.preparacions[this.npreparacion].texto.length !== 0) {
           if (this.preparacions.length - 1 === this.npreparacion) {
             // Enviar a backend
-            
+            this.apiService.createProduct(this.produto).toPromise()
+              .then((id) => {
+                this.idCreado = id;
+              }).finally(() => {
+                this.ingredentes.forEach((i) => {
+                  this.apiService.addIngredente(i, this.idCreado).toPromise().then(r => {
+                  });
+                });
+                this.preparacions.forEach((p) => {
+                  this.apiService.addLiñaPreparacion(p, this.idCreado).toPromise().then(r => {
+                  });
+                });
+            });
+            for (const i of this.ingredentes) {
+
+            }
           } else {
             this.npreparacion++;
             if (this.preparacions.length - 1 === this.npreparacion) {

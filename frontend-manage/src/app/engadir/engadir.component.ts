@@ -5,9 +5,12 @@ import {faBreadSlice} from '@fortawesome/free-solid-svg-icons/faBreadSlice';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import {faFlagCheckered} from '@fortawesome/free-solid-svg-icons/faFlagCheckered';
-import {IngredenteSenID, LiñaPreparacionSenID, ProdutoSenID} from '../model/engadir';
+import {IngredenteSenID, LiñaPreparacionSenID, ProdutoSenID, TrazaSenID} from '../model/engadir';
 import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
 import {ApiService} from '../api.service';
+import {faDolly} from '@fortawesome/free-solid-svg-icons/faDolly';
+import {faPaperPlane} from '@fortawesome/free-regular-svg-icons/faPaperPlane';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-engadir',
@@ -22,6 +25,7 @@ export class EngadirComponent implements OnInit {
   faChevronRight = faChevronRight;
   faChevronLeft = faChevronLeft;
   faTrash = faTrash;
+  faDolly = faDolly;
 
 
   botonesActivos = [false, false, true];
@@ -36,10 +40,15 @@ export class EngadirComponent implements OnInit {
   preparacions: LiñaPreparacionSenID[] = [{numero: 1, texto: ''}];
   prepvacia: LiñaPreparacionSenID = {numero: this.npreparacion + 2, texto: ''};
 
+  ntraza = 0;
+  trazas: TrazaSenID[] = [{numero: 1, nome: ''}];
+  trazavacia: TrazaSenID = {numero: this.ntraza + 2, nome: ''};
+
   produto: ProdutoSenID = {nome: '', descricion: ''};
   idCreado: any;
+  sending = false;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private route: Router) {
   }
 
   ngOnInit(): void {
@@ -57,12 +66,19 @@ export class EngadirComponent implements OnInit {
           this.ningredente--;
         }
       } else if (this.step === 2) {
-        this.botonesFinal(false);
         if (this.npreparacion === 0) {
           this.step--;
           this.showform--;
         } else {
           this.npreparacion--;
+        }
+      } else if (this.step === 3) {
+        this.botonesFinal(false);
+        if (this.ntraza === 0) {
+          this.step--;
+          this.showform--;
+        } else {
+          this.ntraza--;
         }
       }
     }
@@ -84,6 +100,12 @@ export class EngadirComponent implements OnInit {
           this.prepvacia.numero = this.npreparacion + 2;
           this.preparacions.push(Object.assign({}, this.prepvacia));
           this.npreparacion++;
+        }
+      } else if (this.step === 3) {
+        if (this.trazas[this.ntraza].nome.length !== 0 && this.ntraza === this.trazas.length - 1) {
+          this.trazavacia.numero = this.ntraza + 2;
+          this.trazas.push(Object.assign({}, this.trazavacia));
+          this.ntraza++;
           this.botonesFinal(true);
         }
       }
@@ -107,7 +129,6 @@ export class EngadirComponent implements OnInit {
           if (this.ningredente === this.ingredentes.length - 1) {
             this.step++;
             this.showform++;
-            this.botonesFinal(true);
           } else {
             this.ningredente++;
           }
@@ -115,33 +136,52 @@ export class EngadirComponent implements OnInit {
       } else if (this.step === 2) {
         if (this.preparacions[this.npreparacion].texto.length !== 0) {
           if (this.preparacions.length - 1 === this.npreparacion) {
-            // Enviar a backend
-            this.apiService.createProduct(this.produto).toPromise()
-              .then((id) => {
-                this.idCreado = id;
-              }).finally(() => {
-                this.ingredentes.forEach((i) => {
-                  this.apiService.addIngredente(i, this.idCreado).toPromise().then(r => {
-                  });
-                });
-                this.preparacions.forEach((p) => {
-                  this.apiService.addLiñaPreparacion(p, this.idCreado).toPromise().then(r => {
-                  });
-                });
-            });
-            for (const i of this.ingredentes) {
-
-            }
+            this.botonesFinal(true);
+            this.step++;
+            this.showform++;
           } else {
             this.npreparacion++;
-            if (this.preparacions.length - 1 === this.npreparacion) {
-              this.botonesFinal(true);
-            }
+          }
+        }
+      } else if (this.step === 3) {
+        if (this.trazas.length - 1 === this.ntraza) {
+          // Enviar a backend
+          if (!this.sending) {
+            this.sending = true;
+            this.apiService.createProduct(this.produto).toPromise()
+              .then((id) => {
+                this.idCreado = id.insetedId;
+              }).finally(() => {
+              this.ingredentes.forEach((i) => {
+                this.apiService.addIngredente(i, this.idCreado).toPromise().then(r => {
+                });
+              });
+              this.preparacions.forEach((p) => {
+                this.apiService.addLiñaPreparacion(p, this.idCreado).toPromise().then(r => {
+                });
+              });
+              this.trazas.forEach((t) => {
+                this.apiService.addTraza(t, this.idCreado).toPromise().then(r => {
+                });
+              });
+            });
+            setTimeout(() => {
+              this.faChevronRight = faPaperPlane;
+              this.textoSeguinte = 'Engadido!';
+              setTimeout(() => this.route.navigate(['/']), 400);
+            }, 300);
+          }
+          // TODO ADD ERROR MESSAGES FROM DB
+        } else {
+          this.ntraza++;
+          if (this.trazas.length - 1 === this.ntraza) {
+            this.botonesFinal(true);
           }
         }
       }
     }
   }
+
 
   handleEliminar() {
     if (this.step === 1) {
@@ -157,6 +197,13 @@ export class EngadirComponent implements OnInit {
         this.npreparacion--;
       } else {
         this.preparacions.shift();
+      }
+    } else if (this.step === 3) {
+      if (this.ntraza > 0) {
+        this.trazas = this.trazas.slice(0, this.ntraza).concat(this.trazas.slice(this.ntraza + 1));
+        this.ntraza--;
+      } else {
+        this.trazas.shift();
       }
     }
   }

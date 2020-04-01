@@ -13,3 +13,12 @@ export class LiñaPreparacionSenID {
   numero: number;
   texto: string;
 }
+
+export class Retorno {
+  insetedId: number;
+}
+
+export class TrazaSenID {
+  numero: number;
+  nome: string;
+}

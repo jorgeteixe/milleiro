@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Produto} from './model/produto';
 import {GraficoDataset} from './model/grafico-dataset';
 import {map} from 'rxjs/operators';
-import {IngredenteSenID, LiñaPreparacionSenID, ProdutoSenID} from './model/engadir';
+import {IngredenteSenID, LiñaPreparacionSenID, ProdutoSenID, Retorno, TrazaSenID} from './model/engadir';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -33,19 +33,25 @@ export class ApiService {
   }
 
   public createProduct(produto: ProdutoSenID) {
-    return this.httpClient.post<Response>(`${this.apiURL}/produto/engadir`, produto, httpOptions).pipe(
+    return this.httpClient.post<Retorno>(`${this.apiURL}/produto/engadir`, produto, httpOptions).pipe(
       map(response => response)
     );
   }
 
   public addIngredente(ingredente: IngredenteSenID, id: number) {
-    return this.httpClient.post<Response>(`${this.apiURL}/produto/${id}/ingredentes/engadir`, ingredente, httpOptions).pipe(
+    return this.httpClient.post(`${this.apiURL}/produto/${id}/ingredentes/engadir`, ingredente, httpOptions).pipe(
       map(response => response)
     );
   }
 
   public addLiñaPreparacion(liñaPreparacion: LiñaPreparacionSenID, id: number) {
-    return this.httpClient.post<Response>(`${this.apiURL}/produto/${id}/preparacion/engadir`, liñaPreparacion, httpOptions).pipe(
+    return this.httpClient.post(`${this.apiURL}/produto/${id}/preparacion/engadir`, liñaPreparacion, httpOptions).pipe(
+      map(response => response)
+    );
+  }
+
+  public addTraza(traza: TrazaSenID, id: number) {
+    return this.httpClient.post(`${this.apiURL}/produto/${id}/traza/engadir`, traza, httpOptions).pipe(
       map(response => response)
     );
   }

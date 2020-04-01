@@ -20,35 +20,55 @@ app.get('/grafico/produtos', (req, res) => {
     pool.query(queries.PRODUTOS_CON_TRAZA, (error, result) => {
         if (error) throw error;
         res.send(result);
-    })
-})
+    });
+});
 
 app.get('/grafico/dataset/:id', (req, res) => {
     const id = req.params.id
     pool.query(queries.DATASET_POR_ID, id, (error, result) => {
         if (error) throw error;
         res.send(result[0]);
-    })
-})
+    });
+});
 
 app.post('/produto/engadir', (req, res) => {
-    res.status(200).send('11'); 
+    var produto = JSON.parse(JSON.stringify(req.body));
+    pool.query(queries.INSERT_PRODUTO, [produto.nome, produto.descricion], (error, result) => {
+        if (error) throw error;
+        var insetedId = { insetedId: result.insertId };
+        console.log('Insertado produto: result = ' + JSON.stringify(insetedId));
+        res.status(200).send(insetedId);
+    });
 });
 
 app.post('/produto/:id/ingredentes/engadir', (req, res) => {
     const id = req.params.id
     var ingredente = JSON.parse(JSON.stringify(req.body));
-    console.log(ingredente.nome);
-    res.send('200');
+    pool.query(queries.INSERT_INGREDIENTE, [id, ingredente.nome, ingredente.cantidade, ingredente.unidade], (error, result) => {
+        if (error) throw error;
+        console.log('Insertado ingredente para prod id = ' + id);
+        res.status(200).send(result)
+    });
 });
 
 app.post('/produto/:id/preparacion/engadir', (req, res) => {
     const id = req.params.id
     var preparacion = JSON.parse(JSON.stringify(req.body));
-    console.log(preparacion.texto);
-    res.send('200');
+    pool.query(queries.INSERT_PREPARACION, [id, preparacion.numero, preparacion.texto], (error, result) => {
+        if (error) throw error;
+        console.log('Insertada preparación para prod id = ' + id);
+        res.status(200).send(result)
+    });
 });
 
-
+app.post('/produto/:id/traza/engadir', (req, res) => {
+    const id = req.params.id
+    var traza = JSON.parse(JSON.stringify(req.body));
+    pool.query(queries.INSERT_TRAZA, [id, traza.numero, traza.nome], (error, result) => {
+        if (error) throw error;
+        console.log('Insertada traza para prod id = ' + id);
+        res.status(200).send(result)
+    });
+});
 
 app.listen(port, () => console.log(`backend-manage listening on port ${port}!`));

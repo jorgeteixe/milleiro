@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
     setTimeout(() => {
       this.generateDatasets();
       this.generateChart();
-    }, 100);
+    }, 300);
   }
 
   colorProduto(id: number, activo: boolean) {
@@ -140,7 +140,8 @@ export class DashboardComponent implements OnInit {
           yAxes: [{
             display: true,
             ticks: {
-              stepSize: 1
+              stepSize: 1,
+              beginAtZero: true
             }
           }]
         }

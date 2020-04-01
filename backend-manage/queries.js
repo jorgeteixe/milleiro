@@ -22,3 +22,27 @@ exports.GET_ID_FROM_NAME = `SELECT ID as id FROM PRODUTO WHERE NOME = ?;`;
 exports.INSERT_INGREDIENTE = `INSERT INTO composicion (PRODUTO_ID, NOME, CANTIDADE, UNIDADE) VALUE (?, ?, ?, ?);`;
 exports.INSERT_PREPARACION = `INSERT INTO preparacion (PRODUTO_ID, NUMERO, TEXTO)  VALUE (?, ?, ?);`;
 exports.INSERT_TRAZA = `INSERT INTO FORMA_TRAZA (PRODUTO_ID, NUMERO, NOME)  VALUE (?, ?, ?);`;
+exports.LISTA_TRAZADOS = `SELECT P.ID as id, P.NOME as nome,
+SUBSTRING(P.DESCRICION, 1, 20) AS descr,
+COUNT(DISTINCT PR.REFERENCIA)  AS referencias,
+COUNT(DISTINCT C.ID)           AS ingredentes,
+COUNT(DISTINCT T.ID)           AS trazados
+FROM PRODUTO P
+  LEFT JOIN produto_ref PR on P.ID = PR.PRODUTO_ID
+  LEFT JOIN composicion C ON P.ID = C.PRODUTO_ID
+  LEFT JOIN forma_traza FT ON P.ID = FT.PRODUTO_ID
+  LEFT JOIN traza T on FT.ID = T.TRAZA_ID
+GROUP BY P.ID
+HAVING trazados > 0`;
+exports.LISTA_SIN_TRAZAR = `SELECT P.ID as id, P.NOME as nome,
+SUBSTRING(P.DESCRICION, 1, 20) AS descr,
+COUNT(DISTINCT PR.REFERENCIA)  AS referencias,
+COUNT(DISTINCT C.ID)           AS ingredentes,
+COUNT(DISTINCT T.ID)           AS trazados
+FROM PRODUTO P
+  LEFT JOIN produto_ref PR on P.ID = PR.PRODUTO_ID
+  LEFT JOIN composicion C ON P.ID = C.PRODUTO_ID
+  LEFT JOIN forma_traza FT ON P.ID = FT.PRODUTO_ID
+  LEFT JOIN traza T on FT.ID = T.TRAZA_ID
+GROUP BY P.ID
+HAVING trazados = 0`;

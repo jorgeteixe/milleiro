@@ -71,4 +71,18 @@ app.post('/produto/:id/traza/engadir', (req, res) => {
     });
 });
 
+app.get('/produtos/lista/trazados', (req, res) => {
+    pool.query(queries.LISTA_TRAZADOS, (error, result) => {
+        if (error) throw error;
+        res.send(result);
+    });
+});
+
+app.get('/produtos/lista/sintrazar', (req, res) => {
+    pool.query(queries.LISTA_SIN_TRAZAR, (error, result) => {
+        if (error) throw error;
+        res.send(result);
+    });
+});
+
 app.listen(port, () => console.log(`backend-manage listening on port ${port}!`));

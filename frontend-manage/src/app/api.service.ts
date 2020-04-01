@@ -4,6 +4,7 @@ import {Produto} from './model/produto';
 import {GraficoDataset} from './model/grafico-dataset';
 import {map} from 'rxjs/operators';
 import {IngredenteSenID, LiñaPreparacionSenID, ProdutoSenID, Retorno, TrazaSenID} from './model/engadir';
+import {ProdutosListar} from './model/listar';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -52,6 +53,18 @@ export class ApiService {
 
   public addTraza(traza: TrazaSenID, id: number) {
     return this.httpClient.post(`${this.apiURL}/produto/${id}/traza/engadir`, traza, httpOptions).pipe(
+      map(response => response)
+    );
+  }
+
+  public getProdutosTrazados() {
+    return this.httpClient.get<ProdutosListar[]>(`${this.apiURL}/produtos/lista/trazados`).pipe(
+      map(response => response)
+    );
+  }
+
+  public getProdutosSinTrazar() {
+    return this.httpClient.get<ProdutosListar[]>(`${this.apiURL}/produtos/lista/sintrazar`).pipe(
       map(response => response)
     );
   }

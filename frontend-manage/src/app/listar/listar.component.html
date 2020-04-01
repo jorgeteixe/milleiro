@@ -1,1 +1,54 @@
-<p>listar works!</p>
+<div class="add-scroll"></div>
+<div class="h-100 align-items-center d-flex">
+  <div class="w-75 mx-auto">
+    <h2 *ngIf="trazados">Trazados ({{trazados.length}})
+      <div class="float-right engadir" routerLink="/engadir">
+        <fa-icon [icon]="faPlus"></fa-icon> Engadir novo
+      </div>
+    </h2>
+    <div *ngFor="let t of trazados" class="row w-100 neumorphism item d-flex align-items-center">
+      <div class="col-3 nombre h-100 ">
+        <div class="titulo" (click)="handleClickProd(t.id)">{{t.nome}}</div>
+        <div class="descr"><small class="text-muted">{{t.descr}}</small></div>
+      </div>
+      <div class="col-2 h-100 tiene-numero">
+        <div class="h-75 numero">{{t.ingredentes}}</div>
+        <div class="h-25"><small class="text-muted">ingredentes</small></div>
+      </div>
+      <div class="col-2 h-100 tiene-numero">
+        <div class="h-75 numero">{{t.referencias}}</div>
+        <div class="h-25"><small class="text-muted">referencias</small></div>
+      </div>
+      <div class="col-2 h-100 tiene-numero">
+        <div class="h-75 numero">{{t.trazados}}</div>
+        <div class="h-25"><small class="text-muted">trazas</small></div>
+      </div>
+      <div class="col-2 h-100 tiene-numero text-right">
+        <fa-icon [icon]="faChevronRight" class="siguiente" (click)="handleClickProd(t.id)"></fa-icon>
+      </div>
+    </div>
+    <h2 *ngIf="sintrazar">Sin trazar ({{sintrazar.length}})</h2>
+    <div *ngFor="let t of sintrazar" class="row w-100 neumorphism  item d-flex align-items-center">
+      <div class="col-3 nombre h-100 ">
+        <span class="titulo" (click)="handleClickProd(t.id)">{{t.nome}}</span>
+        <div class="descr"><small class="text-muted">{{t.descr}}</small></div>
+      </div>
+      <div class="col-2 h-100 tiene-numero">
+        <div class="h-75 numero">{{t.ingredentes}}</div>
+        <div class="h-25"><small class="text-muted">ingredentes</small></div>
+      </div>
+      <div class="col-2 h-100 tiene-numero">
+        <div class="h-75 numero">{{t.referencias}}</div>
+        <div class="h-25"><small class="text-muted">referencias</small></div>
+      </div>
+      <div class="col-2 h-100 tiene-numero">
+        <div class="h-75 numero"><fa-icon [icon]="faCog"></fa-icon></div>
+        <div class="h-25"><small class="text-muted">configurar</small></div>
+      </div>
+      <div class="col-2 h-100 tiene-numero text-right">
+        <fa-icon [icon]="faChevronRight" class="siguiente" (click)="handleClickProd(t.id)"></fa-icon>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="add-scroll"></div>

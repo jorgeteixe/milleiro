@@ -1,6 +1,9 @@
 .sidebar {
   overflow: hidden;
   padding: 0px;
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
 }
 
 .sidebar > img {

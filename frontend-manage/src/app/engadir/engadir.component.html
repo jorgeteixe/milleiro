@@ -18,6 +18,9 @@
     </div>
     <div class="neumorphism h-75 create">
       <div class="formulario">
+        <fa-icon (click)="handleEliminar()"
+                 *ngIf="step > 0 && ((step == 1 && ingredentes.length != 1) || (step == 2 && preparacions.length != 1))"
+                 [icon]="faTrash"></fa-icon>
         <form *ngIf="showform == 0" class="form-create">
           <div class="form-group">
             <label for="nomeproduto">Nome</label>
@@ -44,7 +47,7 @@
           <div class="form-group desc ingr">
             <div class="cantidade">
               <label for="icantidade">Cantidade</label>
-              <input [(ngModel)]='ingredentes[ningredente].cantidade' min="0" class="form-control" id="icantidade"
+              <input [(ngModel)]='ingredentes[ningredente].cantidade' class="form-control" id="icantidade" min="0"
                      name="icant"
                      placeholder="Cantidade do produto." type="number">
               <small class="form-text text-muted">Cantidade do ingredente en unidades. Só acepta números.</small>
@@ -56,6 +59,15 @@
                      placeholder="g" type="text">
               <small class="form-text text-muted">Por exemplo: g, ml, kg</small>
             </div>
+          </div>
+        </form>
+        <form *ngIf="showform == 2" class="form-create">
+          <div class="form-group">
+            <label for="prep">Preparación {{npreparacion + 1}}/{{preparacions.length}}</label>
+            <textarea [(ngModel)]='preparacions[npreparacion].texto' class="form-control" id="prep"
+                      name="pdescr" placeholder="Describe brevemente os pasos da preparación."
+                      rows="6" type="text"></textarea>
+            <small class="form-text text-muted">Trata de facelo o máis sinxelo e curto que poidas.</small>
           </div>
         </form>
       </div>
@@ -74,7 +86,7 @@
         </div>
         <div class="col">
           <div (click)="handleSeguinte(botonesActivos[2])" [class.buttom-disable]="!botonesActivos[2]"
-               class="buttom next-buttom text-center" [class.glow-button]="ingredentes.length === ningredente + 1|| step === 0">{{textoSeguinte}}
+               class="buttom next-buttom text-center glow-button">{{textoSeguinte}}
             <fa-icon [icon]="faChevronRight"></fa-icon>
           </div>
         </div>

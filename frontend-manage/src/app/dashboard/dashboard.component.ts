@@ -138,7 +138,10 @@ export class DashboardComponent implements OnInit {
             display: true
           }],
           yAxes: [{
-            display: true
+            display: true,
+            ticks: {
+              stepSize: 1
+            }
           }]
         }
       }

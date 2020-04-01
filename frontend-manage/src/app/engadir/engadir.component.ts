@@ -6,6 +6,8 @@ import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import {faFlagCheckered} from '@fortawesome/free-solid-svg-icons/faFlagCheckered';
 import {IngredenteSenID, LiñaPreparacionSenID, ProdutoSenID} from '../model/engadir';
+import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
+import {ApiService} from '../api.service';
 
 @Component({
   selector: 'app-engadir',
@@ -19,6 +21,7 @@ export class EngadirComponent implements OnInit {
   faBreadSlice = faBreadSlice;
   faChevronRight = faChevronRight;
   faChevronLeft = faChevronLeft;
+  faTrash = faTrash;
 
 
   botonesActivos = [false, false, true];
@@ -29,13 +32,13 @@ export class EngadirComponent implements OnInit {
   ingredentevacio: IngredenteSenID = {nome: '', cantidade: 100, unidade: ''};
   ningredente = 0;
 
-  preparacions: LiñaPreparacionSenID[];
-  prepvacia: LiñaPreparacionSenID = {numero: 0, texto: ''};
   npreparacion = 0;
+  preparacions: LiñaPreparacionSenID[] = [{numero: 1, texto: ''}];
+  prepvacia: LiñaPreparacionSenID = {numero: this.npreparacion + 2, texto: ''};
 
   produtoSenID: ProdutoSenID = {nome: '', descricion: ''};
 
-  constructor() {
+  constructor(private apiService: ApiService) {
   }
 
   ngOnInit(): void {
@@ -49,13 +52,16 @@ export class EngadirComponent implements OnInit {
           this.showform--;
           this.botonesActivos[0] = false;
           this.botonesActivos[1] = false;
-        } else if (this.ningredente > 0) {
+        } else {
           this.ningredente--;
         }
       } else if (this.step === 2) {
+        this.botonesFinal(false);
         if (this.npreparacion === 0) {
           this.step--;
           this.showform--;
+        } else {
+          this.npreparacion--;
         }
       }
     }
@@ -71,7 +77,13 @@ export class EngadirComponent implements OnInit {
           && this.ningredente === this.ingredentes.length - 1) {
           this.ingredentes.push(Object.assign({}, this.ingredentevacio));
           this.ningredente++;
-          console.log(this.ingredentes);
+        }
+      } else if (this.step === 2) {
+        if (this.preparacions[this.npreparacion].texto.length !== 0 && this.npreparacion === this.preparacions.length - 1) {
+          this.prepvacia.numero = this.npreparacion + 2;
+          this.preparacions.push(Object.assign({}, this.prepvacia));
+          this.npreparacion++;
+          this.botonesFinal(true);
         }
       }
     }
@@ -94,10 +106,41 @@ export class EngadirComponent implements OnInit {
           if (this.ningredente === this.ingredentes.length - 1) {
             this.step++;
             this.showform++;
+            this.botonesFinal(true);
           } else {
             this.ningredente++;
           }
         }
+      } else if (this.step === 2) {
+        if (this.preparacions[this.npreparacion].texto.length !== 0) {
+          if (this.preparacions.length - 1 === this.npreparacion) {
+            // Enviar a backend
+            
+          } else {
+            this.npreparacion++;
+            if (this.preparacions.length - 1 === this.npreparacion) {
+              this.botonesFinal(true);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  handleEliminar() {
+    if (this.step === 1) {
+      if (this.ningredente > 0) {
+        this.ingredentes = this.ingredentes.slice(0, this.ningredente).concat(this.ingredentes.slice(this.ningredente + 1));
+        this.ningredente--;
+      } else {
+        this.ingredentes.shift();
+      }
+    } else if (this.step === 2) {
+      if (this.npreparacion > 0) {
+        this.preparacions = this.preparacions.slice(0, this.npreparacion).concat(this.preparacions.slice(this.npreparacion + 1));
+        this.npreparacion--;
+      } else {
+        this.preparacions.shift();
       }
     }
   }

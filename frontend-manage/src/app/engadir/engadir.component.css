@@ -45,9 +45,10 @@
 }
 
 .buttoms {
-  margin: 50px 50px 0 50px;
+  margin: 0 50px;
   line-height: 50px;
   font-weight: bold;
+  height: 20%;
 }
 
 .buttom {
@@ -82,4 +83,25 @@
   color: #bbbbbb;
   border-color: #bbbbbb;
   cursor: default;
+}
+
+.formulario {
+  height: 80%;
+}
+
+.ingr > div {
+}
+.unidades {
+  width: 40%;
+  float: right;
+}
+
+.cantidade {
+  float: left;
+  width: 50%;
+}
+
+.glow-button {
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
 }

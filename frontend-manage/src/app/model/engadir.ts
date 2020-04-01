@@ -11,5 +11,5 @@ export class IngredenteSenID {
 
 export class LiñaPreparacionSenID {
   numero: number;
-  nome: string;
+  texto: string;
 }

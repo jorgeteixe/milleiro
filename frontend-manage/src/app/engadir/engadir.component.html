@@ -2,47 +2,79 @@
   <div class="h-75 mx-auto mw-60">
     <div class="neumorphism mb-5" style="height: 100px;">
       <div class="row head">
-        <div class="col head-part selected">
+        <div [class.selected]="step === 0" class="col head-part">
           <fa-icon [icon]="faPlus"></fa-icon>
           Novo produto
         </div>
-        <div class="col head-part text-center">
+        <div [class.selected]="step === 1" class="col head-part text-center">
           <fa-icon [icon]="faSeeding"></fa-icon>
           Ingredentes
         </div>
-        <div class="col head-part text-right">
+        <div [class.selected]="step === 2" class="col head-part text-right">
           <fa-icon [icon]="faBreadSlice"></fa-icon>
           Preparación
         </div>
       </div>
     </div>
     <div class="neumorphism h-75 create">
-      <form class="form-create">
-        <div class="form-group">
-          <label for="nome">Nome</label>
-          <input class="form-control" id="nome" placeholder="Nome produto" type="text">
-          <small class="form-text text-muted">Utiliza un nome corto e que mellor identifique o produto.</small>
-        </div>
-        <div class="form-group desc">
-          <label for="descricion">Descrición</label>
-          <textarea class="form-control" id="descricion" placeholder="Descrición do produto a engadir."
-                    type="text"></textarea>
-          <small class="form-text text-muted">Describe brevemente o produto, ten en conta que nos seguintes pasos
-            engadirás ós ingredentes e a preparación.</small>
-        </div>
-      </form>
+      <div class="formulario">
+        <form *ngIf="showform == 0" class="form-create">
+          <div class="form-group">
+            <label for="nomeproduto">Nome</label>
+            <input [(ngModel)]='produtoSenID.nome' class="form-control" id="nomeproduto" name="pnome"
+                   placeholder="Nome produto" type="text">
+            <small class="form-text text-muted">Utiliza un nome corto e que mellor identifique o produto.</small>
+          </div>
+          <div class="form-group desc">
+            <label for="descricionproduto">Descrición</label>
+            <textarea [(ngModel)]='produtoSenID.descricion' class="form-control" id="descricionproduto"
+                      name="pdescr"
+                      placeholder="Descrición do produto a engadir." type="text"></textarea>
+            <small class="form-text text-muted">Describe brevemente o produto, ten en conta que nos seguintes pasos
+              engadirás ós ingredentes e a preparación.</small>
+          </div>
+        </form>
+        <form *ngIf="showform == 1" class="form-create">
+          <div class="form-group">
+            <label for="inome">Ingredente {{ningredente + 1}}/{{ingredentes.length}} </label>
+            <input [(ngModel)]='ingredentes[ningredente].nome' class="form-control" id="inome" name="iname"
+                   placeholder="Fariña de millo" type="text">
+            <small class="form-text text-muted">Utiliza un nome corto e que mellor identifique o ingredente.</small>
+          </div>
+          <div class="form-group desc ingr">
+            <div class="cantidade">
+              <label for="icantidade">Cantidade</label>
+              <input [(ngModel)]='ingredentes[ningredente].cantidade' min="0" class="form-control" id="icantidade"
+                     name="icant"
+                     placeholder="Cantidade do produto." type="number">
+              <small class="form-text text-muted">Cantidade do ingredente en unidades. Só acepta números.</small>
+            </div>
+            <div class="unidades">
+              <label for="iunidade">Unidade</label>
+              <input [(ngModel)]='ingredentes[ningredente].unidade' class="form-control" id="iunidade"
+                     name="iunidade"
+                     placeholder="g" type="text">
+              <small class="form-text text-muted">Por exemplo: g, ml, kg</small>
+            </div>
+          </div>
+        </form>
+      </div>
       <div class="row buttoms">
         <div class="col">
-          <div [class.buttom-disable]="!botonesActivos[0]" class="buttom back-buttom text-center" (click)="handleAnterior(botonesActivos[0])">
+          <div (click)="handleAnterior(botonesActivos[0])" [class.buttom-disable]="!botonesActivos[0]"
+               class="buttom back-buttom text-center">
             <fa-icon [icon]="faChevronLeft"></fa-icon>
             Anterior
           </div>
         </div>
         <div class="col">
-          <div [class.buttom-disable]="!botonesActivos[1]" class="buttom more-buttom text-center" (click)="handleMais(botonesActivos[0])">Engadir máis</div>
+          <div (click)="handleMais(botonesActivos[1])" [class.buttom-disable]="!botonesActivos[1]"
+               class="buttom more-buttom text-center">Engadir máis
+          </div>
         </div>
         <div class="col">
-          <div [class.buttom-disable]="!botonesActivos[2]" class="buttom next-buttom text-center" (click)="handleSeguinte(botonesActivos[0])">{{textoSeguinte}}
+          <div (click)="handleSeguinte(botonesActivos[2])" [class.buttom-disable]="!botonesActivos[2]"
+               class="buttom next-buttom text-center" [class.glow-button]="ingredentes.length === ningredente + 1|| step === 0">{{textoSeguinte}}
             <fa-icon [icon]="faChevronRight"></fa-icon>
           </div>
         </div>

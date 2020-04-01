@@ -7,6 +7,19 @@ body {
   width: 100%;
 }
 
+
+@media (max-width: 1000px) {
+  .mw-60 {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1750px) {
+  .mw-60 {
+    max-width: 70%;
+  }
+}
+
 .neumorphism {
   border-radius: 31px;
   background: #ffffff;

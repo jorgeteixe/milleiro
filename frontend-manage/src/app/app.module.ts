@@ -10,6 +10,7 @@ import { BuscarComponent } from './buscar/buscar.component';
 import { ApiComponent } from './api/api.component';
 import { ContrasinalComponent } from './contrasinal/contrasinal.component';
 import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     FontAwesomeModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

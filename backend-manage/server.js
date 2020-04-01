@@ -32,24 +32,23 @@ app.get('/grafico/dataset/:id', (req, res) => {
 })
 
 app.post('/produto/engadir', (req, res) => {
-    console.log(req.body);      // your JSON
-    res.status(200).send('11');    // echo the result back
+    res.status(200).send('11'); 
 });
 
 app.post('/produto/:id/ingredentes/engadir', (req, res) => {
     const id = req.params.id
-    console.log(id);      // url id
-    console.log(req.body);      // your JSON
-    res.send('200');    // echo the result back
+    var ingredente = JSON.parse(JSON.stringify(req.body));
+    console.log(ingredente.nome);
+    res.send('200');
 });
 
 app.post('/produto/:id/preparacion/engadir', (req, res) => {
     const id = req.params.id
-    console.log(id);      // url id
-    console.log(req.body);      // your JSON
-    res.send('200');    // echo the result back
+    var preparacion = JSON.parse(JSON.stringify(req.body));
+    console.log(preparacion.texto);
+    res.send('200');
 });
 
 
 
-app.listen(port, () => console.log(`backend-manage listening on port ${port}!`))
+app.listen(port, () => console.log(`backend-manage listening on port ${port}!`));

@@ -11,7 +11,7 @@ import {ProdutoRef} from './classes/produto-ref';
 })
 export class ApiService {
 
-  apiURL = 'http://localhost:3000';
+  apiURL = 'https://milleiro.jorgeteixeira.es/api/panel/';
 
   constructor(private httpClient: HttpClient) { }
 

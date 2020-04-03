@@ -1,0 +1,12 @@
+<div class="h-100 d-flex align-items-center">
+  <div class="mx-auto">
+    <form>
+      <div class="form-group text-center">
+        <label for="contrasinal">Contrasinal</label>
+        <input [class.is-invalid]="error" (keyup.enter)="submit()" type="password" class="form-control" id="contrasinal" name="contrasinal" [(ngModel)]="password.pwd">
+        <small class="form-text text-muted">Introduce o contrasinal de acceso.</small>
+        <div (click)="submit()" class="btn btn-primary mt-3">Entrar</div>
+      </div>
+    </form>
+  </div>
+</div>

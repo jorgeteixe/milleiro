@@ -4,6 +4,7 @@ import {ProdutoSimple} from './classes/produto-simple';
 import {Refline} from './classes/refline';
 import {Produto} from './classes/produto';
 import {Traza} from './classes/traza';
+import {ProdutoRef} from './classes/produto-ref';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,9 @@ export class ApiService {
 
   public getTraza(ref: string) {
     return this.httpClient.get<Traza[]>(`${this.apiURL}/ref/${ref}/traza`);
+  }
+
+  public addRef(ref: ProdutoRef) {
+    return this.httpClient.post(`${this.apiURL}/ref/add`, ref);
   }
 }

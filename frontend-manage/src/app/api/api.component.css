@@ -1,0 +1,39 @@
+.token-line {
+  background-image: linear-gradient(170deg, rgba(255, 227, 63, 0.25), #ffffff, #ffffff, #ffffff,
+  rgba(146, 11, 54, 0.09));
+  height: 100px;
+  margin-top: 20px;
+  padding: 0 50px;
+}
+
+.tokens {
+  margin-top: 50px;
+}
+
+.tokens > h2  {
+  margin: 20px 0;
+}
+
+.tk-big {
+  font-size: 22px;
+}
+
+.tk-big > fa-icon {
+  padding-left: 8px;
+  cursor: pointer;
+}
+
+.red {
+  color: #920b36;
+}
+
+
+.green {
+  color: darkgreen;
+}
+
+.icon-add {
+  color: darkgreen;
+  font-size: 1.7em;
+  cursor: pointer;
+}

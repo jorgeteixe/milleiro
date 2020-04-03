@@ -1,6 +1,6 @@
 <div class="h-100 d-flex align-items-center">
   <div class="h-75 mx-auto mw-60">
-    <div class="neumorphism mb-5" style="height: 100px;">
+    <div class="neumorphism mb-5 fondo" style="height: 100px;">
       <div class="row head">
         <div [class.selected]="step === 0" class="col head-part text-center">
           <fa-icon [icon]="faPlus"></fa-icon>
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div class="neumorphism h-75 create">
+    <div class="neumorphism h-75 create fondo">
       <div class="formulario">
         <fa-icon (click)="handleEliminar()"
                  *ngIf="step > 0 && ((step == 1 && ingredentes.length != 1) || (step == 2 && preparacions.length != 1) || (step == 3 && trazas.length != 1))"

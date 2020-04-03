@@ -3,6 +3,7 @@ import {ApiService} from '../api.service';
 import {Produto} from '../model/produto';
 import {Chart} from 'chart.js';
 import {GraficoDataset} from '../model/grafico-dataset';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,10 +24,13 @@ export class DashboardComponent implements OnInit {
   color2 = '#ffe33f';
   color3 = '#3a3a3c';
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private router: Router) {
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem('logged') !== 'yes') {
+      this.router.navigate(['/login']).then();
+    }
     this.apiService.getProdutosGrafico().toPromise()
       .then(r => {
         this.produtos = r;

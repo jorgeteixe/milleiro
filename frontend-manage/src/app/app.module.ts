@@ -6,11 +6,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { EngadirComponent } from './engadir/engadir.component';
 import { ListarComponent } from './listar/listar.component';
-import { BuscarComponent } from './buscar/buscar.component';
 import { ApiComponent } from './api/api.component';
-import { ContrasinalComponent } from './contrasinal/contrasinal.component';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { ProdutoComponent } from './produto/produto.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +18,9 @@ import {FormsModule} from '@angular/forms';
     DashboardComponent,
     EngadirComponent,
     ListarComponent,
-    BuscarComponent,
     ApiComponent,
-    ContrasinalComponent
+    ProdutoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

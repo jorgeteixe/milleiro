@@ -6,3 +6,7 @@ export class ProdutosListar {
   ingredentes: number;
   trazados: number;
 }
+
+export class Conta {
+  conta: number;
+}

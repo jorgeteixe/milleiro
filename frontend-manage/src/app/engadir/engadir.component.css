@@ -113,3 +113,9 @@
   font-size: 1.2em;
   float: right;
 }
+
+.fondo {
+  background-image: linear-gradient(170deg, rgba(255, 227, 63, 0.25), #ffffff, #ffffff, #ffffff,
+  rgba(146, 11, 54, 0.09));
+}
+

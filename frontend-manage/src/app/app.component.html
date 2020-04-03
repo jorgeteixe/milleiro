@@ -19,10 +19,6 @@
           <fa-icon [icon]="faListOl"></fa-icon>
           <span>Listar</span>
         </div>
-        <div class="link" routerLink="/buscar" routerLinkActive="selected">
-          <fa-icon [icon]="faSearch"></fa-icon>
-          <span>Buscar</span>
-        </div>
         <div class="separator">
           Configuración
         </div>
@@ -30,11 +26,7 @@
           <fa-icon [icon]="faProjectDiagram"></fa-icon>
           <span>API</span>
         </div>
-        <div class="link" routerLink="/constrasinal" routerLinkActive="selected">
-          <fa-icon [icon]="faUnlock"></fa-icon>
-          <span>Constrasinal</span>
-        </div>
-        <div class="link">
+        <div class="link" (click)="logout()">
           <fa-icon [icon]="faSignOutAlt"></fa-icon>
           <span>Saír</span>
         </div>

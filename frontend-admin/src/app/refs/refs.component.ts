@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angula
 import {ApiService} from '../api.service';
 import {Refline} from '../classes/refline';
 import {Produto} from '../classes/produto';
+import {ProdutoRef} from '../classes/produto-ref';
 
 @Component({
   selector: 'app-refs',
@@ -36,6 +37,15 @@ export class RefsComponent implements OnInit, OnChanges {
   handleClick(ref: string) {
     this.selectedRef = ref;
     this.selectRef.emit(ref);
+  }
+
+  addRef() {
+    let randomRef = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    randomRef = this.produtoInfo.nome.substring(0, 1).concat(randomRef.substring(0, 8)).toUpperCase();
+    const ref: ProdutoRef = { produto: this.produto, referencia: randomRef };
+    this.apiService.addRef(ref).toPromise().then(() =>
+      this.ngOnChanges()
+    );
   }
 
 }

@@ -1,1 +1,32 @@
-<p>api works!</p>
+<div>
+  <div class="w-75 mx-auto tokens">
+    <div class="float-right">
+      <form class="form-inline">
+        <div class="form-group mr-4">
+          <label for="novonome" class="mr-3">Engadir</label>
+          <input (keyup.enter)="engadir()" type="text" class="form-control mr-3" id="novonome" name="novonome" placeholder="Nome identificativo" [(ngModel)]="nomeEngadir">
+          <fa-icon [icon]="faPlus" class="icon-add" (click)="engadir()"></fa-icon>
+        </div>
+      </form>
+    </div>
+    <h2 class="w-50">Trazados (<span *ngIf="tokens">{{tokens.length}}</span>)</h2>
+    <div *ngFor="let t of tokens" class="row w-100 neumorphism item d-flex align-items-center token-line">
+      <div class="row w-100">
+        <div class="col-4"><small>Token</small><br><span class="selectable tk-big">{{t.token}}</span></div>
+        <div class="col-4"><small>Nome</small><br><span class="selectable tk-big">{{t.nome}}</span></div>
+        <div class="col-2">
+          <small>Activo</small><br>
+          <span class="tk-big">
+            <fa-icon (click)="desactivar(t.token)" *ngIf="t.activo" [class.green]="t.activo"
+                     [icon]="faCheckCircle"></fa-icon>
+            <fa-icon (click)="activar(t.token)" *ngIf="!t.activo" [class.red]="!t.activo"
+                     [icon]="faTimesCircle"></fa-icon>
+          </span>
+        </div>
+        <div class="col-2"><small>Borrar</small><br><span class="tk-big"><fa-icon (click)="eliminar(t.token)"
+                                                                                  [icon]="faTrash"></fa-icon></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

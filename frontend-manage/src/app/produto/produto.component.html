@@ -1,0 +1,48 @@
+<div class="h-100 d-flex align-items-center">
+  <div class="h-75 ancho mx-auto">
+    <div *ngIf="produto" class="superior h-25 w-50 d-inline-block">
+      <h1>{{produto.nome}}</h1>
+      <small class="text-muted">{{produto.descricion}}</small>
+    </div>
+    <div class="h-25 w-50  d-inline-block d-flex float-right">
+      <div class="w-50 h-100">
+        <div class="num-item"><span (click)="viendo = 0" [class.selected]="viendo === 0"><span
+          *ngIf="ingredentes">{{ingredentes.length}}</span> ingredentes</span></div>
+        <div class="num-item"><span (click)="viendo = 1" [class.selected]="viendo === 1"><span
+          *ngIf="preparacion">{{preparacion.length}}</span> pasos preparación</span>
+        </div>
+        <div class="num-item"><span (click)="viendo = 2" [class.selected]="viendo === 2"><span
+          *ngIf="trazas">{{trazas.length}}</span> puntos traza</span></div>
+      </div>
+      <div class="w-50 h-100">
+        <div class="num-item"><span (click)="openVisor()"><span *ngIf="cantrefs">{{cantrefs}}</span><span *ngIf="!cantrefs">0</span> referencias <fa-icon
+          [icon]="faExternalLinkAlt" class="separar"></fa-icon></span></div>
+        <div class="num-item"><span (click)="openVisor()"><span *ngIf="canttrazas">{{canttrazas}}</span><span *ngIf="!canttrazas">0</span> rexistros <fa-icon
+          [icon]="faExternalLinkAlt" class="separar"></fa-icon></span></div>
+        <div class="num-item">
+          <span class="eliminar" (click)="eliminar()"><span><fa-icon [icon]="faTrash" class="icon-trash"></fa-icon></span> eliminar</span>
+        </div>
+      </div>
+    </div>
+    <div class="h-75 w-100 neumorphism panel">
+      <div *ngIf="viendo == 0">
+        <h1>Ingredentes</h1>
+        <div>
+          <span *ngFor="let i of ingredentes">{{i.cantidade}} {{i.unidade}} de {{i.nome}} <br></span>
+        </div>
+      </div>
+      <div *ngIf="viendo == 1">
+        <h1>Preparación</h1>
+        <div>
+          <span *ngFor="let p of preparacion" class="preps">{{p.numero}} - {{p.texto}} <br></span>
+        </div>
+      </div>
+      <div *ngIf="viendo == 2">
+        <h1>Puntos traza</h1>
+        <div>
+          <span *ngFor="let t of trazas">{{t.numero}} - {{t.nome}} <br></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

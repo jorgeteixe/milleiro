@@ -10,3 +10,12 @@
   cursor: default !important;
   background: #eed9d1 !important;
 }
+
+.overflow-y {
+  overflow-y: scroll;
+  max-height: 85vh;
+}
+
+.altura {
+  max-height: 15vh;
+}

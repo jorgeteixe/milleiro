@@ -1,0 +1,103 @@
+.num-item {
+  height: 25%;
+}
+
+.num-item > span {
+  color: #626262;
+  cursor: pointer;
+}
+
+.num-item > span:hover {
+  color: #3a3a3c;
+}
+
+.num-item > span > span {
+  padding-right: 10px;
+  font-size: 40px;
+}
+
+.superior > small {
+  padding-left: 5px;
+}
+
+.superior > h1 {
+  margin-top: 10px;
+  font-size: 45px;
+}
+
+.eliminar {
+  color: darkred !important;
+}
+
+.eliminar:hover {
+  color: #a60000 !important;
+}
+
+.icon-trash {
+  padding-left: 5px;
+  font-size: 30px;
+}
+
+.separar {
+  margin-left: 10px;
+}
+
+.selected {
+  color: #920b36 !important;
+}
+
+.num-item > span:first-child {
+  width: 40px;
+}
+
+.panel {
+  background-image: linear-gradient(150deg, rgba(255, 227, 63, 0.4), #ffffff, #ffffff, rgba(146, 11, 54, 0.09));
+  padding: 25px 40px;
+}
+
+.panel > div > h1 {
+  color: #3a3a3c;
+  height: 10%;
+  text-align: center;
+}
+
+.panel > div {
+  height: 100%;
+}
+
+.panel > div > div {
+  height: 90%;
+  padding-top: 50px;
+  text-align: center;
+}
+
+.panel > div > div > span {
+  font-size: 2em;
+  color: #3a3a3c;
+}
+
+.ancho {
+  width: 50%;
+}
+
+@media (max-width: 1500px) {
+  .ancho {
+    width: 80%;
+  }
+}
+@media (max-width: 1010px) {
+  .ancho {
+    width: 100%;
+  }
+}
+
+.preps {
+  font-size: 18px !important;
+  display: block;
+  margin-top: 20px;
+  border-bottom: 1px solid rgba(98, 98, 98, 0.22);
+}
+
+.preps:last-of-type {
+  border-bottom: none;
+}

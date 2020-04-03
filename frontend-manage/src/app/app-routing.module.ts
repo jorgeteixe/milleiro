@@ -3,18 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {EngadirComponent} from './engadir/engadir.component';
 import {ListarComponent} from './listar/listar.component';
-import {BuscarComponent} from './buscar/buscar.component';
 import {ApiComponent} from './api/api.component';
-import {ContrasinalComponent} from './contrasinal/contrasinal.component';
+import {ProdutoComponent} from './produto/produto.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'tableiro', pathMatch: 'full' },
   { path: 'tableiro', component: DashboardComponent },
   { path: 'engadir', component: EngadirComponent },
   { path: 'listar', component: ListarComponent },
-  { path: 'buscar', component: BuscarComponent },
+  { path: 'listar/:id', component: ProdutoComponent },
   { path: 'api', component: ApiComponent },
-  { path: 'constrasinal', component: ContrasinalComponent }
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

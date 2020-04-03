@@ -4,7 +4,9 @@ import {Produto} from './model/produto';
 import {GraficoDataset} from './model/grafico-dataset';
 import {map} from 'rxjs/operators';
 import {IngredenteSenID, LiñaPreparacionSenID, ProdutoSenID, Retorno, TrazaSenID} from './model/engadir';
-import {ProdutosListar} from './model/listar';
+import {Conta, ProdutosListar} from './model/listar';
+import {Password, PwdRespuesta} from './login/password';
+import {Token} from './api/token';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -65,6 +67,83 @@ export class ApiService {
 
   public getProdutosSinTrazar() {
     return this.httpClient.get<ProdutosListar[]>(`${this.apiURL}/produtos/lista/sintrazar`).pipe(
+      map(response => response)
+    );
+  }
+
+  getProduto(id: number) {
+    return this.httpClient.get<ProdutoSenID>(`${this.apiURL}/produto/${id}`).pipe(
+      map(response => response)
+    );
+  }
+
+  getIngredentes(id: number) {
+    return this.httpClient.get<IngredenteSenID[]>(`${this.apiURL}/produto/${id}/ingredentes`).pipe(
+      map(response => response)
+    );
+  }
+
+  getPreparacion(id: number) {
+    return this.httpClient.get<LiñaPreparacionSenID[]>(`${this.apiURL}/produto/${id}/preparacion`).pipe(
+      map(response => response)
+    );
+  }
+
+  getTraza(id: number) {
+    return this.httpClient.get<TrazaSenID[]>(`${this.apiURL}/produto/${id}/traza`).pipe(
+      map(response => response)
+    );
+  }
+
+  getCantidadReferencias(id: number) {
+    return this.httpClient.get<Conta>(`${this.apiURL}/produto/${id}/referencias/contar`).pipe(
+      map(response => response)
+    );
+  }
+
+  getCantidadTrazados(id: number) {
+    return this.httpClient.get<Conta>(`${this.apiURL}/produto/${id}/trazas/contar`).pipe(
+      map(response => response)
+    );
+  }
+
+  logIn(pwd: Password) {
+    return this.httpClient.post<PwdRespuesta>(`${this.apiURL}/contrasinal`, pwd, httpOptions).pipe(
+      map(response => response)
+    );
+  }
+
+  getTokens() {
+    return this.httpClient.get<Token[]>(`${this.apiURL}/tokens`).pipe(
+      map(response => response)
+    );
+  }
+  addToken(token: Token) {
+    return this.httpClient.post<PwdRespuesta>(`${this.apiURL}/tokens/engadir`, token, httpOptions).pipe(
+      map(response => response)
+    );
+  }
+
+  deleteProduto(id: number) {
+    return this.httpClient.delete(`${this.apiURL}/produto/${id}`).pipe(
+      map(response => response)
+    );
+  }
+
+  deleteToken(token: string) {
+    return this.httpClient.delete(`${this.apiURL}/token/${token}`).pipe(
+      map(response => response)
+    );
+  }
+
+  activateToken(token: string) {
+    return this.httpClient.get(`${this.apiURL}/token/${token}/activate`).pipe(
+      map(response => response)
+    );
+  }
+
+  deactivateToken(token: string) {
+    return this.httpClient.get(`${this.apiURL}/token/${token}/deactivate`).pipe(
       map(response => response)
     );
   }

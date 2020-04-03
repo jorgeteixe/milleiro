@@ -52,6 +52,9 @@ export class EngadirComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem('logged') !== 'yes') {
+      this.route.navigate(['/login']).then();
+    }
   }
 
   handleAnterior(activo: boolean) {
@@ -145,31 +148,34 @@ export class EngadirComponent implements OnInit {
         }
       } else if (this.step === 3) {
         if (this.trazas.length - 1 === this.ntraza) {
-          // Enviar a backend
-          if (!this.sending) {
-            this.sending = true;
-            this.apiService.createProduct(this.produto).toPromise()
-              .then((id) => {
-                this.idCreado = id.insetedId;
-              }).finally(() => {
-              this.ingredentes.forEach((i) => {
-                this.apiService.addIngredente(i, this.idCreado).toPromise().then(r => {
+          if (this.trazas[this.ntraza].nome.length != 0) {
+
+            // Enviar a backend
+            if (!this.sending) {
+              this.sending = true;
+              this.apiService.createProduct(this.produto).toPromise()
+                .then((id) => {
+                  this.idCreado = id.insetedId;
+                }).finally(() => {
+                this.ingredentes.forEach((i) => {
+                  this.apiService.addIngredente(i, this.idCreado).toPromise().then(r => {
+                  });
+                });
+                this.preparacions.forEach((p) => {
+                  this.apiService.addLiñaPreparacion(p, this.idCreado).toPromise().then(r => {
+                  });
+                });
+                this.trazas.forEach((t) => {
+                  this.apiService.addTraza(t, this.idCreado).toPromise().then(r => {
+                  });
                 });
               });
-              this.preparacions.forEach((p) => {
-                this.apiService.addLiñaPreparacion(p, this.idCreado).toPromise().then(r => {
-                });
-              });
-              this.trazas.forEach((t) => {
-                this.apiService.addTraza(t, this.idCreado).toPromise().then(r => {
-                });
-              });
-            });
-            setTimeout(() => {
-              this.faChevronRight = faPaperPlane;
-              this.textoSeguinte = 'Engadido!';
-              setTimeout(() => this.route.navigate(['/']), 400);
-            }, 300);
+              setTimeout(() => {
+                this.faChevronRight = faPaperPlane;
+                this.textoSeguinte = 'Engadido!';
+                setTimeout(() => this.route.navigate(['/']), 400);
+              }, 300);
+            }
           }
           // TODO ADD ERROR MESSAGES FROM DB
         } else {

@@ -1,7 +1,9 @@
-<div *ngIf="produtoInfo">
+<div *ngIf="produtoInfo" class="altura">
+  <div class="float-right btn btn-outline-dark mt-3 mr-3" (click)="addRef()">Generar referencia</div>
   <h1 class="titulo">{{produtoInfo.nome}}</h1>
   <p>{{produtoInfo.descricion}}</p>
 </div>
+<div class="overflow-y">
 <table *ngIf="reflines.length != 0" class="table">
   <thead>
     <th scope="col">Referencia</th>
@@ -24,3 +26,4 @@
   </tr>
   </tbody>
 </table>
+</div>

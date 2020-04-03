@@ -60,7 +60,7 @@ export class ProdutoComponent implements OnInit, OnDestroy {
   }
 
   openVisor() {
-    window.open('http://localhost:4201', '_blank');
+    window.open('https://panel-milleiro.jorgeteixeira.es/', '_blank');
   }
 
   eliminar() {

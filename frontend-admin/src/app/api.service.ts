@@ -11,7 +11,7 @@ import {ProdutoRef} from './classes/produto-ref';
 })
 export class ApiService {
 
-  apiURL = 'https://milleiro.jorgeteixeira.es/api/panel/';
+  apiURL = 'https://api-panel-milleiro.jorgeteixeira.es';
 
   constructor(private httpClient: HttpClient) { }
 

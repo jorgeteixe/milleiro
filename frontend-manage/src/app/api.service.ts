@@ -19,7 +19,7 @@ const httpOptions = {
 })
 export class ApiService {
 
-  apiURL = 'https://milleiro.jorgeteixeira.es/api/admin';
+  apiURL = 'https://api-admin-milleiro.jorgeteixeira.es';
 
   constructor(private httpClient: HttpClient) {}
 

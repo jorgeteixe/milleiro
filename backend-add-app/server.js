@@ -1,5 +1,5 @@
 // donenv load .env file variables
-// require('dotenv').config()
+require('dotenv').config()
 
 const bodyParser = require('body-parser')
 const express = require('express')
@@ -33,10 +33,38 @@ app.get('/produto/:id/trazas', (req, res) => {
 
 app.post('/traza/engadir', (req, res) => {
     var traza = JSON.parse(JSON.stringify(req.body));
-    pool.query(queries.ADD_TRAZA, [traza.referencia, traza.traza_id, traza.fecha, traza.localizacion, traza.latitud, traza.longitud], (error, result) => {
-        if (error) console.log(error);
-        res.send(result);
+    var token = traza.token;
+    var tokenvalido = false;
+    pool.query(queries.COMPROBAR_TOKEN, token, (error, result) => {
+        if (error) {
+            console.log(error);
+            res.sendStatus(404);
+        } else {
+            try {
+                var activo = result[0].activo === 1
+                if (activo) {
+                    tokenvalido = true;
+                }
+                console.log(tokenvalido)
+                if (tokenvalido) {
+                    pool.query(queries.ADD_TRAZA, [traza.referencia, traza.traza_id, traza.fecha, traza.localizacion, traza.latitud, traza.longitud], (error, result) => {
+                        if (error) {
+                            console.log(error);
+                            res.sendStatus(406);
+                        } else {
+                            res.sendStatus(201);
+                        }
+                    });
+                } else {
+                    res.sendStatus(403);
+                }
+            } catch (error) {
+                res.sendStatus(403);
+            }
+            
+        }
     });
+
 });
 
 app.listen(port, () => console.log(`backend-add-app listening on port ${port}!`));

@@ -92,7 +92,6 @@ public class ConfigActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @Override

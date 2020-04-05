@@ -45,16 +45,26 @@ app.post('/traza/engadir', (req, res) => {
                 if (activo) {
                     tokenvalido = true;
                 }
-                console.log(tokenvalido)
                 if (tokenvalido) {
-                    pool.query(queries.ADD_TRAZA, [traza.referencia, traza.traza_id, traza.fecha, traza.localizacion, traza.latitud, traza.longitud], (error, result) => {
+                    pool.query(queries.TRAZA_DE_REF, [traza.referencia, traza.traza_id], (error, result2) => {
                         if (error) {
                             console.log(error);
-                            res.sendStatus(406);
+                            res.sendStatus(404);
                         } else {
-                            res.sendStatus(201);
+                            if (result2[0].existe) { // HACER COMPROBACION
+                                pool.query(queries.ADD_TRAZA, [traza.referencia, traza.traza_id, traza.fecha, traza.localizacion, traza.latitud, traza.longitud], (error, result3) => {
+                                    if (error) {
+                                        console.log(error);
+                                        res.sendStatus(406);
+                                    } else {
+                                        res.sendStatus(201);
+                                    }
+                                });
+                            } else {
+                                res.sendStatus(406);
+                            }
                         }
-                    });
+                    })
                 } else {
                     res.sendStatus(403);
                 }

@@ -1,0 +1,2 @@
+rootProject.name='milleiro-app'
+include ':app'

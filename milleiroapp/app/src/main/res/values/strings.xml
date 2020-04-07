@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">milleiro-app</string>
+    <string name="app_name">Milleiro</string>
+    <string name="permission_denied">Millogalego non pode acceder á camara!</string>
+    <string name="scan_help_title">Escanea un código QR</string>
+    <string name="scan_help_subtitle">Todos os produtos de Milleiro teñen un código QR na súa etiqueta... Enfócao na cámara!</string>
 </resources>

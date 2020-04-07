@@ -3,4 +3,18 @@
     <string name="permission_denied">Millogalego non pode acceder á camara!</string>
     <string name="scan_help_title">Escanea un código QR</string>
     <string name="scan_help_subtitle">Todos os produtos de Milleiro teñen un código QR na súa etiqueta... Enfócao na cámara!</string>
+    <string name="ingredentes">Ingredentes</string>
+    <string name="traza">Traza</string>
+    <string name="preparacion">Preparación</string>
+    <string name="compartir">Compartir</string>
+    <string name="share_message">Eu xa teño o meu produto de Milleiro, e ti?</string>
+    <string name="img_qr_des">Exemplo de código QR</string>
+    <string name="img_ingredentes">"Icono ingredentes "</string>
+    <string name="img_traza">Icono traza</string>
+    <string name="img_prep_des">Icono preparación</string>
+    <string name="img_compartir_des">Icono compartir</string>
+    <string name="not_found_404">Referencia non encontrada no sistema.</string>
+    <string name="other_status_error">Ocorreu un erro na comunicación co sistema.</string>
+    <string name="other_network_error">Non se pode comunicar co sistema.</string>
+    <string name="img_back_des">Icono volver</string>
 </resources>

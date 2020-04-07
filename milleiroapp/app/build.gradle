@@ -34,4 +34,7 @@ dependencies {
     // Libraries for QR
     implementation 'me.dm7.barcodescanner:zxing:1.9.13'
     implementation 'com.karumi:dexter:6.0.2'
+    // Libraries for HTTP request
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }

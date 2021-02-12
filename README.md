@@ -1,6 +1,5 @@
 # milleiro
 ![GitHub](https://img.shields.io/github/license/jorgeteixe/milleiro)
-![Twitter Follow](https://img.shields.io/twitter/follow/jorgeteixe_?style=social)
 
 A full web/android app with backend, to track the traceability of specific products.
 

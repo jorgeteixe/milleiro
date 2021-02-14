@@ -30,7 +30,7 @@ Web app advanced
 ![Web advanced app](img/manage.png)
 
 ## milleiroapp
-Android milleiro app - Final user
+Android milleiro app - final user
 
 ## milleiroapp-backend
 Backend for milleiroapp
